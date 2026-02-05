@@ -1,190 +1,138 @@
-.bdy{
+/* 1. GLOBAL RESET & BASE STYLES */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.bdy {
     background: linear-gradient(
-        rgba(26, 0, 26, 0.8), /* Dark Purple tint */
-        rgba(0, 0, 0, 0.9)    /* Transitions to deep Black */
+        rgba(26, 0, 26, 0.8), 
+        rgba(0, 0, 0, 0.9)    
     ),
     url("https://i.ibb.co/nT5ySJB/background.jpg");
-    
     background-size: cover;
     background-position: center;
-    height: 100dvh;
     background-attachment: fixed;
-    margin: 0;
-}
-.player-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 3%; /* Adjust based on your preference */
-}
-
-/* Ensure the span inherits the glowing style of your htitle */
-#x {
-    margin-left: 20px; /* Space between the word 'Player' and the number */
-}
-
-.htitle{
+    min-height: 100vh;
+    min-height: 100dvh; /* Dynamic viewport for mobile browsers */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: aliceblue;
-    font-size: 100px;
-    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+/* 2. TYPOGRAPHY */
+.htitle {
+    font-size: clamp(40px, 10vw, 80px); /* Adjusts size based on screen width */
+    margin: 40px 10px 20px 10px;
     text-align: center;
-    text-shadow:0 0 20px #ff00ff;
-}
-.guidebtn{
-    padding: 30px 40px;
-    font-size: 25px;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 5px; /* Slightly rounded for a modern look */
-   
-    
-    
-    /* 2. Ninja Colors */
-    background-color: #000000;      /* Black background */
-    color: #ff00ff;                 /* Neon Pink text */
-    border: 2px solid #800080;      /* Purple border */
-
-    /* 3. The Glow (Box Shadow) */
-    box-shadow: 0 0 10px #800080, inset 0 0 5px #800080;
-    
-    /* 4. Smooth Transition for Animation */
-    transition: all 0.3s ease;
+    text-shadow: 0 0 20px #ff00ff;
     text-transform: uppercase;
-    letter-spacing: 2px;
-
 }
-.sbtn{
-    /* Position & Size */
-    position: relative;
-    padding: 30px 40px;
-    font-size: 25px;
+
+/* 3. BUTTONS (Shared Styles) */
+.sbtn, .guidebtn, .settbtn {
+    padding: 15px 30px;
+    font-size: clamp(16px, 4vw, 22px);
     font-weight: 900;
-    letter-spacing: 4px;
-     /* Slightly rounded for a modern look */
-    
-    /* Colors */
-    background: #000000;      /* Pitch black core */
-    color: #ff00ff;           /* Neon Pink text */
-    border: 2px solid #800080; /* Deep Purple border */
-    border-radius: 5px;       /* Sharp edges look more "Ninja" than rounded ones */
-    
-    /* Effects */
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: all 0.3s ease-in-out;
-    
-    /* The Glow (Horizontal, Vertical, Blur, Spread, Color) */
-    box-shadow: 0 0 15px rgba(128, 0, 128, 0.7), 
-                inset 0 0 10px rgba(255, 0, 255, 0.2);
-}
-
-/* Hover State: When the player moves their mouse over it */
-.sbtn:hover {
-    color: #ffffff;
-    background: #800080;      /* Flips to Purple */
-    border-color: #ff00ff;    /* Border glows Pink */
-    box-shadow: 0 0 30px #ff00ff; /* Intense Pink outer glow */
-    transform: translateY(-5px); /* Slight lift effect */
-}
-
-/* Active State: When the button is clicked */
-.sbtn:active {
-    transform: scale(0.95);    /* "Pressed" effect */
-    box-shadow: 0 0 10px #ff00ff;
-}
-.settbtn{
-    padding: 30px 40px;
-    font-size: 25px;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 5px; /* Slightly rounded for a modern look */
-   
-    
-    
-    /* 2. Ninja Colors */
-    background-color: #000000;      /* Black background */
-    color: #ff00ff;                 /* Neon Pink text */
-    border: 2px solid #800080;      /* Purple border */
-
-    /* 3. The Glow (Box Shadow) */
-    box-shadow: 0 0 10px #800080, inset 0 0 5px #800080;
-    
-    /* 4. Smooth Transition for Animation */
-    transition: all 0.3s ease;
-    text-transform: uppercase;
     letter-spacing: 2px;
-}
-.btns{
-   display: flex;
-   gap: 10%;
-   margin-top: 15%;
-   align-items: center;
-   justify-content: center;
-}
-.guidelines {
-  display: block;
-  width: 70%;
-  padding: 20px;
-  margin-left: 10%;
-  margin-top: 10%;
-
-  background: rgba(0, 0, 0, 0.4);
-  color: #ff00ff;
-  border: 2px solid #800080;
-  border-radius: 10px;
-
-  box-shadow: 0 0 15px #800080;
-  font-size: 25px;
-  justify-content: center;
-  align-items: center;
-}
-
-.guidelines h2 {
-  text-align: center;
-  color: aliceblue;
-}
-
-.guidelines ul {
-  list-style: none;
-  padding: 0;
-}
-
-.guidelines li {
-  margin: 10px 0;
-}
-
-/* The box containing the image and text */
-.options {
-    position: relative; /* Essential: This acts as the anchor for the overlay */
-    width: 150px;
-    height: 150px;
+    background: #000;
+    color: #ff00ff;
+    border: 2px solid #800080;
     border-radius: 8px;
-    overflow: hidden; /* Keeps the overlay corners rounded */
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(128, 0, 128, 0.5);
+    width: 250px; /* Default width for desktop */
+    max-width: 90%;
+}
+
+.sbtn:hover {
+    background: #800080;
+    color: #fff;
+    box-shadow: 0 0 25px #ff00ff;
+    transform: translateY(-3px);
+}
+
+.btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+    margin-top: 30px;
+}
+
+/* 4. GAMEPLAY UI (Player Info) */
+.remhp {
+    text-align: center;
+    text-shadow: 0 0 15px red;
+    margin: 10px 0;
+    font-size: 1.2rem;
+}
+
+.move-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.options {
+    position: relative;
+    width: clamp(100px, 25vw, 150px);
+    height: clamp(100px, 25vw, 150px);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid #ff00ff;
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.3);
 }
 
 .options img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures the image fills the square without stretching */
+    object-fit: cover;
 }
 
-/* The translucent background/text area */
 .overlay {
     position: absolute;
-    bottom: 0;         /* Pins it to the bottom */
-    left: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.6); /* Black with 60% opacity */
-    color: white;
-    padding: 8px 0;
-    text-align: center;
-    backdrop-filter: blur(4px); /* Optional: Gives it a modern frosted glass look */
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    padding: 5px 0;
+    font-size: 0.8rem;
+    font-weight: bold;
 }
 
-.overlay p {
-    margin: 0;
-    font-size: 0.9rem;
-    font-weight: bold;
-    letter-spacing: 1px;
+/* 5. GUIDELINES & CONTAINERS */
+.guidelines {
+    width: 90%;
+    max-width: 600px;
+    padding: 25px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid #800080;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(128, 0, 128, 0.4);
+    margin: 20px auto;
+}
+
+/* 6. RESPONSIVE OVERRIDES (MOBILE) */
+@media (max-width: 600px) {
+    .btns {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .sbtn, .guidebtn, .settbtn {
+        width: 85%;
+    }
+
+    .options-row {
+        flex-wrap: wrap;
+        gap: 15px !important;
+    }
 }
