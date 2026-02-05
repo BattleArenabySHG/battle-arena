@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battle Arena</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body class="bdy">
+    <div class="player-header">
+    <h1 class="htitle">Player <span id="x">1</span></h1>
+</div>
+    <h3 id='xx1' style="color: aliceblue; text-shadow:0 0 20px red; margin-left:2% ;" class="remhp">Remaining health:xx hp</h3>
+    <h3 id='xx2' style="color: aliceblue; text-shadow:0 0 20px red; margin-left:2% ;" class="remhp">Remaining health:xx hp</h3>
+    <h3 id='xx3' style="color: aliceblue; text-shadow:0 0 20px red; margin-left:2% ;" class="remhp">Remaining health:xx hp</h3>
+    <h3 id='xx4' style="color: aliceblue; text-shadow:0 0 20px red; margin-left:2% ;" class="remhp">Remaining health:xx hp</h3>
+    <h2 style="color: aliceblue; text-align: center;">Choose your move..</h2>
+    <div style="min-height: 100px; display: flex; gap:10%; justify-content: center; align-items:center;">
+    
+    <div>
+        <button onclick="attack()"> 
+            <div class="options">   
+                <img src="https://i.ibb.co/KjYp5x6C/1000264303.jpg" alt="Attack">
+                <div class="overlay"><p>ATTACK</p></div>
+            </div>
+        </button>
+        <p style="color: white; text-align: center;">Unlimited</p>
+    </div>
+
+    <div>
+        <button id="ha-btn" onclick="hattack()">
+            <div class="options">
+                <img src="https://i.ibb.co/vvszLb0c/1000264300.jpg" alt="Heavy Attack">
+                <div class="overlay"><p>HEAVY</p></div>
+            </div>
+        </button>
+        <p id="ha-count" style="color: #ff00ff; text-align: center; font-weight: bold;">Left: 2</p>
+    </div>
+
+    <div>
+        <button id="def-btn" onclick="defend()">
+            <div class="options">
+                <img src="https://i.ibb.co/FLfJhpsJ/1000264306.jpg" alt="Defend">
+                <div class="overlay"><p>DEFEND</p></div>
+            </div>
+        </button>
+        <p id="def-count" style="color: #00ffff; text-align: center; font-weight: bold;">Left: 3</p>
+    </div>
+</div>
+<script src="game1.js"></script>
+<script>
+window.onload = function() {
+    // 1. Update the HP values on the screen
+    updateHealthUI();
+
+    // 2. Update the current player number (the 'x' element)
+    let cursor = Number(localStorage.getItem("cursor")) || 1;
+    let n = Number(localStorage.getItem("n")) || 2;
+    let xElement = document.getElementById('x');
+    if (xElement) {
+        xElement.textContent = cursor;
+    }
+
+    // 3. Retrieve global history to calculate move limits
+    let allMoves = JSON.parse(localStorage.getItem("gameHistory")) || [];
+    
+    // Logic: Filter moves belonging to the current player (cursor)
+    // We ignore "Eliminated" moves so they don't count towards the limit
+    let playerMoveHistory = allMoves.filter((move, index) => 
+        (index % n) === (cursor - 1) && move !== "Eliminated"
+    );
+
+    // Count specific moves used
+    let heavyUsed = playerMoveHistory.filter(m => m === "Heavy Attack").length;
+    let defendUsed = playerMoveHistory.filter(m => m === "Defend").length;
+
+    let heavyLeft = 2 - heavyUsed; // Limit of 2
+    let defendLeft = 3 - defendUsed; // Limit of 3
+
+    // 4. Update the UI Text Labels
+    if(document.getElementById('ha-count')) {
+        document.getElementById('ha-count').textContent = `Left: ${heavyLeft}`;
+    }
+    if(document.getElementById('def-count')) {
+        document.getElementById('def-count').textContent = `Left: ${defendLeft}`;
+    }
+
+    // 5. Disable buttons if limits are reached
+    if (heavyLeft <= 0) {
+        let btn = document.getElementById("ha-btn");
+        if(btn) {
+            btn.disabled = true;
+            btn.style.opacity = "0.3";
+            btn.style.filter = "grayscale(100%)";
+            btn.style.cursor = "not-allowed";
+        }
+    }
+
+    if (defendLeft <= 0) {
+        let btn = document.getElementById("def-btn");
+        if(btn) {
+            btn.disabled = true;
+            btn.style.opacity = "0.3";
+            btn.style.filter = "grayscale(100%)";
+            btn.style.cursor = "not-allowed";
+        }
+    }
+};
+</script>
+</body>
+</html>

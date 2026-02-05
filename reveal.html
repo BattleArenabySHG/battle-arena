@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battle Arena</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body class="bdy">
+    <h3 class="htitle" >Round Results</h3>
+    <div id="results-container" style="color: aliceblue; text-align: center; margin-bottom: 20px;">
+        </div>
+
+    <div style="display:flex; justify-content: center;">
+        <button class="sbtn" onclick="nextRound()" id="continue-btn">Next Round</button>
+    </div>
+
+    <script src="game1.js"></script>
+    <script>
+        window.onload = function() {
+            calculateResults();
+        };
+
+        function nextRound() {
+            // Reset cursor for the next circle
+            localStorage.setItem("cursor", 1);
+            // Clear moves for the next circle
+            localStorage.setItem("playerMoves", JSON.stringify([]));
+            window.location.href = "playerinf.html";
+        }
+    </script>
+</body>
