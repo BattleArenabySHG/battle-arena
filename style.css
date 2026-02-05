@@ -1,5 +1,5 @@
 /* 1. GLOBAL RESET & FONTS */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Rajdhani:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Rajdhani:wght@500;700&display=swap');
 
 * {
     box-sizing: border-box;
@@ -7,79 +7,106 @@
     padding: 0;
 }
 
+:root {
+    --primary-glow: #ff00ff;
+    --border-color: #800080;
+}
+
+body.neon-theme {
+    --primary-glow: #00ffff;
+    --border-color: #008080;
+}
+
 .bdy {
-    background: linear-gradient(rgba(26, 0, 26, 0.8), rgba(0, 0, 0, 0.9)),
-    url("https://i.ibb.co/nT5ySJB/background.jpg");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    min-height: 100vh;
-    min-height: 100dvh;
-    font-family: 'Rajdhani', sans-serif; /* Clean font for mobile readability */
-    color: aliceblue;
+    background: linear-gradient(rgba(26, 0, 26, 0.9), rgba(0, 0, 0, 0.95)),
+    url("https://i.ibb.co/nT5ySJB/background.jpg") center/cover fixed;
+    font-family: 'Rajdhani', sans-serif;
+    color: #f0f8ff;
+    
+    /* VERTICAL & HORIZONTAL CENTERING */
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center;      /* Horizontal Center */
+    justify-content: center;   /* Vertical Center */
+    
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 20px;
     overflow-x: hidden;
+    gap: 30px; /* SPACE BETWEEN MAIN SECTIONS */
 }
 
 /* 2. TYPOGRAPHY */
 .htitle {
     font-family: 'Orbitron', sans-serif;
-    font-size: clamp(32px, 8vw, 70px); /* Scaled down for mobile */
-    margin: 30px 10px 15px 10px;
+    font-size: clamp(30px, 9vw, 65px);
+    text-shadow: 0 0 15px var(--primary-glow);
     text-align: center;
-    text-shadow: 0 0 20px #ff00ff;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    margin: 0; /* Let the body gap handle spacing */
+    line-height: 1.2;
 }
 
-/* 3. BUTTONS */
+/* 3. BUTTONS & GAPS */
+.btns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* SPACE BETWEEN INDIVIDUAL BUTTONS */
+    width: 100%;
+}
+
 .sbtn, .guidebtn, .settbtn {
     font-family: 'Orbitron', sans-serif;
-    padding: 12px 25px;
-    font-size: clamp(14px, 4vw, 18px);
-    font-weight: 700;
-    background: #000;
-    color: #ff00ff;
-    border: 2px solid #800080;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 250px;
+    padding: 16px;
+    width: 280px;
     max-width: 90%;
+    border: 2px solid var(--border-color);
+    background: #000;
+    color: var(--primary-glow);
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: transform 0.2s, box-shadow 0.3s;
 }
 
 .sbtn:hover {
-    background: #800080;
-    color: #fff;
-    box-shadow: 0 0 20px #ff00ff;
+    box-shadow: 0 0 20px var(--primary-glow);
+    transform: scale(1.05);
 }
 
-/* 4. GAMEPLAY UI */
-.remhp {
-    font-family: 'Orbitron', sans-serif;
-    text-align: center;
-    text-shadow: 0 0 10px red;
-    margin: 8px 0;
-    font-size: clamp(0.9rem, 3vw, 1.2rem);
+/* 4. GAMEPLAY OPTIONS GAP */
+.options-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px; /* SPACE BETWEEN MOVE ICONS */
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 .options {
-    width: clamp(80px, 25vw, 130px); /* Smaller for mobile side-by-side */
-    height: clamp(80px, 25vw, 130px);
-    border: 2px solid #ff00ff;
-    border-radius: 10px;
+    width: clamp(85px, 24vw, 130px);
+    height: clamp(85px, 24vw, 130px);
+    border: 2px solid var(--primary-glow);
+    border-radius: 15px;
     overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
 }
 
-/* 6. RESPONSIVE OVERRIDES */
-@media (max-width: 600px) {
-    .btns {
-        flex-direction: column;
-        gap: 12px;
-    }
-    .sbtn, .guidebtn, .settbtn {
-        width: 80%;
-    }
+/* 5. CONTAINERS */
+.guidelines {
+    width: 95%;
+    max-width: 500px;
+    padding: 25px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* SPACE BETWEEN SETTING ITEMS */
+}
+
+@media (max-width: 480px) {
+    .bdy { gap: 20px; }
+    .options-row { gap: 15px; }
 }
