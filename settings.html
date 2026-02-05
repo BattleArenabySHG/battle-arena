@@ -8,52 +8,27 @@
         
         
     </head>
-    <body class="bdy">
 
+  <body class="bdy">
   <h1 class="htitle">Settings</h1>
-
   <div class="guidelines">
-
-    <!-- Sound Settings -->
-    <h3>Sound</h3>
-    <label>
-      <input type="radio" name="sound" checked> ON
-    </label>
-    <label>
-      <input type="radio" name="sound"> OFF
-    </label>
-
-    <br><br>
-
-    <!-- Difficulty Settings -->
-    <h3>Difficulty</h3>
-    <label>
-      <input type="radio" name="difficulty" checked> Easy
-    </label>
-    <label>
-      <input type="radio" name="difficulty"> Medium
-    </label>
-    <label>
-      <input type="radio" name="difficulty"> Hard
-    </label>
-
-    <br><br>
-
-    <!-- Theme Settings -->
-    <h3>Theme</h3>
-    <label>
-      <input type="radio" name="theme" checked> Dark
-    </label>
-    <label>
-      <input type="radio" name="theme"> Neon
-    </label>
-
+    <h3>Sound Effects</h3>
+    <label><input type="radio" name="sound" value="ON" checked> ON</label>
+    <label><input type="radio" name="sound" value="OFF"> OFF</label>
   </div>
 
-  <a href="main.html">
+  <button class="sbtn" onclick="saveSettings()">Save Changes</button>
+  <a href="index.html">
     <button class="sbtn">Back</button>
   </a>
 <script src="game1.js" defer></script>
+ <script>
+      // Load current setting on page open
+      window.onload = () => {
+          const current = localStorage.getItem("soundSetting") || "ON";
+          document.querySelector(`input[value="${current}"]`).checked = true;
+      };
+  </script>
 </body>
 
 </html>
