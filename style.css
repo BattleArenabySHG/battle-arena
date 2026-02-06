@@ -15,12 +15,18 @@
     background-attachment: fixed;
     min-height: 100vh;
     min-height: 100dvh;
-    font-family: 'Rajdhani', sans-serif; /* Clean font for mobile readability */
+    font-family: 'Rajdhani', sans-serif;
     color: aliceblue;
+    
+    /* Centering Logic */
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: center; /* Centers vertically */
+    align-items: center;     /* Centers horizontally */
+    text-align: center;
+    
     overflow-x: hidden;
+    padding: 20px; /* Prevents content from touching edges on small screens */
 }
 
 /* 2. TYPOGRAPHY */
@@ -76,9 +82,13 @@
 /* 6. RESPONSIVE OVERRIDES */
 @media (max-width: 600px) {
     .btns {
-        flex-direction: column;
-        gap: 12px;
-    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px; /* Adds consistent spacing between buttons */
+    width: 100%;
+}
     .sbtn, .guidebtn, .settbtn {
         width: 80%;
     }

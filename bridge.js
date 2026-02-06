@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // 4. Safety Check: If someone opens 'start.html' directly, 
     // redirect them to the index.html so the music plays.
-    if (window.self === window.top && !window.location.pathname.includes('index.html')) {
-        window.location.href = 'index.html';
+    if (window.self === window.top && !window.location.pathname.includes('home.html')) {
+        window.location.href = 'home.html';
     }
 });
