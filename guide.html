@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+        <script src="bridge.js"></script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Battle Arena </title>
@@ -8,6 +9,8 @@
         
     </head>
 <body class="bdy">
+  
+
 <div  class="guidelines">
   <h2>Game Guidelines</h2>
   <ul>
@@ -16,8 +19,15 @@
     <li>Wait for your turn before playing.</li>
     <li>The player with the highest score wins.</li>
     <li>Do not refresh the page during the game.</li>
+    <li>Initial Health Points (HP) of each player is 100</li>
+    <li>Attack will reduces 10HP for other players if they didn't select defend</li>
+    <li>Heavy Attack reduces 20HP for other players if they didn't select defend</li>
+    <li>Defend will not reduce any Health Points</li>
+    <li>There will be only 2 Heavy attacks,3 Defends and unlimited Attacks</li>
   </ul>
 </div>
 <script src="game1.js" defer></script>
+
+
 </body>
 </html>

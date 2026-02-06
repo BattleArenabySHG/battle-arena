@@ -14,6 +14,28 @@ function startGameState(n) {
     window.location.href = "ready.html";
 }
 
+
+
+
+
+
+/*music.pause();
+localStorage.setItem("musicPlaying", "false");*/
+  
+
+
+
+
+let clickSound = new Audio("Button click sound.mp3");
+clickSound.play();
+
+
+  
+
+
+
+
+
 function refresh() {
     window.location.href = "playerinf.html";
 }
